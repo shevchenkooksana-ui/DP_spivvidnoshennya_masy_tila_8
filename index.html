@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Дослідницький практикум</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff7e0;--card:#ffffff;--ink:#1b1b3a;--muted:#3d3d66;--line:#1b1b3a;
+--c1:#0b5fff;--c1b:#dce8ff;--c2:#d6006f;--c2b:#ffdcec;--c3:#0a7a3d;--c3b:#d8f5e3;--c4:#b34700;--c4b:#ffe6cf;--c5:#6a22d6;--c5b:#ebe0ff;
+--ok:#0a7a3d;--bad:#c20000;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){color-scheme:dark;--bg:#14142b;--card:#202046;--ink:#fffbe8;--muted:#d9d9f5;--line:#fffbe8;
+--c1:#8fb4ff;--c1b:#1c2d63;--c2:#ff8cc3;--c2b:#4d1235;--c3:#6fe3a0;--c3b:#0f3b26;--c4:#ffb36b;--c4b:#4a2808;--c5:#c3a2ff;--c5b:#34205e;--ok:#6fe3a0;--bad:#ff8a8a}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#14142b;--card:#202046;--ink:#fffbe8;--muted:#d9d9f5;--line:#fffbe8;
+--c1:#8fb4ff;--c1b:#1c2d63;--c2:#ff8cc3;--c2b:#4d1235;--c3:#6fe3a0;--c3b:#0f3b26;--c4:#ffb36b;--c4b:#4a2808;--c5:#c3a2ff;--c5b:#34205e;--ok:#6fe3a0;--bad:#ff8a8a}
+*{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Nunito',system-ui,sans-serif;font-size:18px;line-height:1.6;font-weight:600}
+main{max-width:860px;margin:0 auto;padding:20px 16px 48px}
+header{background:var(--c1);color:#fff;border-radius:24px;padding:24px 24px 20px;border:3px solid var(--line)}
+header h1{margin:0 0 6px;font-size:clamp(20px,3.5vw,24px);font-weight:800;line-height:1.2}
+header .topic{margin:6px 0 0;font-size:clamp(30px,6.5vw,46px);font-weight:900;line-height:1.15}
+header p{margin:6px 0 0;font-weight:700}
+.bar{height:16px;background:rgba(255,255,255,.35);border-radius:99px;margin-top:16px;overflow:hidden;border:2px solid #fff}
+.bar i{display:block;height:100%;width:0;background:#ffd400;transition:width .4s}
+.prog{font-weight:800;margin-top:6px}
+.info{display:grid;gap:12px;margin:16px 0}
+@media(min-width:640px){.info{grid-template-columns:1fr 1fr}}
+.box{background:var(--card);border:3px solid var(--line);border-radius:20px;padding:14px 18px}
+.box b{display:block;font-weight:900;font-size:20px}
+.step{background:var(--card);border:3px solid var(--line);border-left-width:14px;border-radius:20px;margin:16px 0;padding:16px 18px;border-left-color:var(--c)}
+.step h2{margin:0 0 8px;font-size:23px;font-weight:900;color:var(--c);display:flex;gap:10px;align-items:center}
+.step h2 span{background:var(--c);color:var(--bg);border-radius:50%;min-width:36px;height:36px;display:inline-grid;place-items:center;font-size:20px}
+.step p{margin:6px 0}
+.tip{background:var(--cb);border-radius:14px;padding:10px 14px;margin:10px 0;font-weight:700}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin:12px 0}
+label{display:flex;flex-direction:column;font-weight:800;gap:4px}
+input,select,textarea{font:inherit;font-weight:700;color:var(--ink);background:var(--bg);border:3px solid var(--line);border-radius:12px;padding:8px 12px;min-width:150px}
+textarea{width:100%;min-height:110px}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,.done input:focus-visible+span{outline:4px solid #ffb400;outline-offset:2px}
+.done{display:flex;flex-direction:row;align-items:center;gap:10px;margin-top:10px;cursor:pointer;font-weight:800}
+.done input{min-width:0;width:26px;height:26px;accent-color:var(--c)}
+.out{font-weight:900;font-size:20px;padding:8px 14px;border-radius:12px;background:var(--cb);border:3px solid var(--c)}
+.ok{color:var(--ok)}.bad{color:var(--bad)}
+table{width:100%;border-collapse:collapse;margin-top:8px;background:var(--card)}
+th,td{border:3px solid var(--line);padding:10px 12px;text-align:center}
+th{background:var(--c5);color:var(--bg);font-weight:900}
+td:last-child{font-weight:900;color:var(--c5)}
+.scroll{overflow-x:auto}
+button{font:inherit;font-weight:900;color:#fff;background:var(--c2);border:3px solid var(--line);border-radius:14px;padding:10px 20px;cursor:pointer}
+button:hover{filter:brightness(1.1)}
+.ghost{background:var(--card);color:var(--ink)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+ul{margin:6px 0;padding-left:22px}
+</style>
+</head>
+<body>
+<main>
+<header>
+<h1>Дослідницький практикум</h1>
+<p class="topic">Самоспостереження за співвідношенням маси і зросту тіла</p>
+<p>Мета: навчитися вимірювати зріст і масу тіла, установлювати співвідношення між ними.</p>
+<div class="bar"><i id="fill"></i></div>
+<div class="prog" id="ptxt">Виконано 0 із 5 кроків</div>
+</header>
+
+<div class="info">
+<div class="box"><b>🧰 Обладнання й матеріали</b>Ростомір, медичні ваги, зошит, підручник.</div>
+<div class="box"><b>🧭 Як працювати з карткою</b>Виконуйте кроки по черзі. Вводьте свої виміри — картка сама заповнить таблицю.</div>
+</div>
+
+<section class="step" style="--c:var(--c1);--cb:var(--c1b)">
+<h2><span>1</span>Визначення зросту</h2>
+<p>Станьте без взуття на площадку ростоміра так, щоб торкатися вимірювальної планки трьома точками: на рівні <b>п’ят, сідничних м’язів і лопаток</b>.</p>
+<p>За горизонтальною планкою, яку притискають до голови, визначте зріст.</p>
+<div class="row"><label>Мій зріст, см<input id="h" type="number" min="100" max="220" step="0.5" inputmode="decimal" placeholder="напр. 168"></label></div>
+<label class="done"><input type="checkbox" data-s> <span>Крок виконано</span></label>
+</section>
+
+<section class="step" style="--c:var(--c2);--cb:var(--c2b)">
+<h2><span>2</span>Визначення маси тіла</h2>
+<p>Станьте без взуття й верхнього одягу на медичні ваги. Визначте масу свого тіла.</p>
+<div class="row"><label>Моя маса, кг<input id="w" type="number" min="20" max="200" step="0.1" inputmode="decimal" placeholder="напр. 58"></label></div>
+<label class="done"><input type="checkbox" data-s> <span>Крок виконано</span></label>
+</section>
+
+<section class="step" style="--c:var(--c3);--cb:var(--c3b)">
+<h2><span>3</span>Визначення масо-зростового індексу</h2>
+<p>Масу тіла (у грамах) розділіть на зріст (у сантиметрах). На кожний сантиметр зросту має припадати <b>350–400 г</b> у хлопців і <b>375–425 г</b> у дівчат.</p>
+<div class="row">
+<label>Моя стать<select id="g"><option value="m">Хлопець</option><option value="f">Дівчина</option></select></label>
+<div class="out" id="idxOut">Введіть зріст і масу</div>
+</div>
+<div class="tip" id="idxTip">Формула: маса (г) ÷ зріст (см).</div>
+<label class="done"><input type="checkbox" data-s> <span>Крок виконано</span></label>
+</section>
+
+<section class="step" style="--c:var(--c4);--cb:var(--c4b)">
+<h2><span>4</span>Визначення масо-зростового показника</h2>
+<p>Якщо зріст <b>155–164 см</b> — відніміть від нього <b>100</b>. Якщо зріст <b>165–185 см</b> — відніміть <b>110</b>.</p>
+<div class="row"><div class="out" id="pokOut">Введіть зріст</div></div>
+<div class="tip" id="pokTip">Отримане число — орієнтир нормальної маси тіла в кілограмах.</div>
+<label class="done"><input type="checkbox" data-s> <span>Крок виконано</span></label>
+</section>
+
+<section class="step" style="--c:var(--c5);--cb:var(--c5b)">
+<h2><span>✓</span>Таблиця «Співвідношення маси і зросту тіла»</h2>
+<div class="scroll"><table>
+<tr><th>Показник</th><th>Значення</th></tr>
+<tr><td>Зріст</td><td id="t1">—</td></tr>
+<tr><td>Маса тіла</td><td id="t2">—</td></tr>
+<tr><td>Масо-зростовий індекс</td><td id="t3">—</td></tr>
+<tr><td>Масо-зростовий показник</td><td id="t4">—</td></tr>
+</table></div>
+<p>Перенесіть значення до таблиці у зошиті.</p>
+</section>
+
+<section class="step" style="--c:var(--c1);--cb:var(--c1b)">
+<h2><span>5</span>Висновки</h2>
+<p>Сформулюйте висновки, у яких вкажіть, про що свідчить відповідність маси тіла й зросту. Поясніть, яке значення для людини має знання цих показників. <b>Запишіть у зошит.</b></p>
+<div class="tip">Підказка до плану: 1) мої виміри; 2) чи в межах норми індекс; 3) що показав показник; 4) чому корисно знати свої показники.</div>
+<label>Чернетка (не зберігається)<textarea placeholder="Напишіть чернетку висновків…"></textarea></label>
+<label class="done"><input type="checkbox" data-s> <span>Висновки записано в зошит</span></label>
+</section>
+
+<div class="tools"><button id="reset" type="button">Очистити все</button><button class="ghost" id="theme" type="button">Світла / темна тема</button></div>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const h=$('h'),w=$('w'),g=$('g');
+function calc(){
+  const H=parseFloat(h.value),W=parseFloat(w.value);
+  $('t1').textContent=H?H+' см':'—';
+  $('t2').textContent=W?W+' кг':'—';
+  if(H&&W){
+    const i=W*1000/H,r=g.value==='m'?[350,400]:[375,425];
+    const ok=i>=r[0]&&i<=r[1];
+    $('idxOut').textContent=i.toFixed(0)+' г/см';
+    $('idxOut').className='out '+(ok?'ok':'bad');
+    $('idxTip').textContent=ok?'Індекс у межах норми ('+r[0]+'–'+r[1]+' г/см).':(i<r[0]?'Нижче норми ':'Вище норми ')+'('+r[0]+'–'+r[1]+' г/см). Запишіть це у висновках.';
+    $('t3').textContent=i.toFixed(0)+' г/см';
+  }else{$('idxOut').textContent='Введіть зріст і масу';$('idxOut').className='out';$('t3').textContent='—';}
+  if(H){
+    let p=null;
+    if(H>=155&&H<165)p=H-100;else if(H>=165&&H<=185)p=H-110;
+    if(p!==null){
+      $('pokOut').textContent=p.toFixed(p%1?1:0)+' кг';
+      $('t4').textContent=p.toFixed(p%1?1:0)+' кг';
+      if(W){const d=W-p;$('pokTip').textContent=Math.abs(d)<=0.05?'Ваша маса збігається з показником.':'Ваша маса '+(d>0?'більша':'менша')+' за показник на '+Math.abs(d).toFixed(1)+' кг.';}
+      else $('pokTip').textContent='Введіть масу, щоб порівняти її з показником.';
+    }else{$('pokOut').textContent='Поза межами 155–185 см';$('t4').textContent='—';$('pokTip').textContent='Для вашого зросту формула в картці не передбачена.';}
+  }else{$('pokOut').textContent='Введіть зріст';$('t4').textContent='—';}
+}
+function prog(){
+  const c=[...document.querySelectorAll('[data-s]')];
+  const n=c.filter(x=>x.checked).length;
+  $('fill').style.width=(n/c.length*100)+'%';
+  $('ptxt').textContent='Виконано '+n+' із '+c.length+(n===c.length?' — чудова робота! 🎉':' кроків');
+}
+[h,w,g].forEach(e=>e.addEventListener('input',calc));
+document.querySelectorAll('[data-s]').forEach(e=>e.addEventListener('change',prog));
+$('reset').onclick=()=>{h.value=w.value='';document.querySelectorAll('[data-s]').forEach(e=>e.checked=false);document.querySelector('textarea').value='';calc();prog();};
+$('theme').onclick=()=>{const r=document.documentElement;const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=dark?'light':'dark';};
+calc();prog();
+</script>
+</body>
+</html>
